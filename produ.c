@@ -5,16 +5,16 @@ struct Producto
 {
     char codigo[25];
     char nombreP[50];
-    char descrip[50];
+    char descripcion[50];
     int cantidad;
     float preciocomp;
 };
 
-void Datosproducto(struct Producto *product);
-void resultadosproducto(struct Producto *product);
-void archivo(struct Producto *producto);
+void Datosprodu(struct Producto *producto);
+void resultadosp(struct Producto *producto);
+void archivo(struct Producto *productos);
 
-int main(int argc, char const *argv[])
+int main()
 {
     int n;
     printf("Indique la cantidad de productos que desea ingresar:\n");
@@ -32,9 +32,13 @@ int main(int argc, char const *argv[])
     do
     {
         printf("----------MENU----------\n");
+        printf("\n");
         printf("Escoja una opcion:\n");
+        printf("\n");
         printf("1. Mostrar los datos del producto\n");
+        printf("\n");
         printf("2. Imprimir datos en el archivo de texto\n");
+        printf("\n");
         printf("3. Finalizar\n");
         scanf("%d", &opc);
 
@@ -42,7 +46,8 @@ int main(int argc, char const *argv[])
         {
         case 1:
             for (int i = 0; i < n; i++)
-            {
+            {   
+                
                 printf("Los datos del producto %d son:\n", i + 1);
                 resultadosp(&producto[i]);
             }
@@ -50,18 +55,46 @@ int main(int argc, char const *argv[])
 
         case 2:
             archivo(producto);
-            printf("Los datos han sido guardados con exito\n");
+            printf("Datos guardados en el archivo\n");
             break;
 
         case 3:
-            printf("Cerrando el programa\n");
+            printf("Finalizando \n");
             break;
 
         default:
-            printf("Opción no válida\n");
+            printf("Opción no valida.\n");
         }
 
     } while (opc != 3);
 
     return 0;
 }
+
+void Datosprodu(struct Producto *producto)
+{
+    printf("Codigo:\n");
+    scanf("%s", producto->codigo);
+
+    printf("Nombre del producto:\n");
+    scanf("%s", producto->nombreP);
+
+    printf("Descripcion:\n");
+    scanf("%s", producto->descripcion);
+
+    printf("Cantidad:\n");
+    scanf("%d", &producto->cantidad);
+
+    printf("Precio de compra:\n");
+    scanf("%f", &producto->preciocomp);
+}
+
+void resultadosp(struct Producto *producto)
+{
+    printf("Codigo: %s\n", producto->codigo);
+    printf("Nombre del producto: %s\n", producto->nombreP);
+    printf("Descripcion: %s\n", producto->descripcion);
+    printf("Cantidad: %d\n", producto->cantidad);
+    printf("Precio de compra: %.2f\n", producto->preciocomp);
+}
+
