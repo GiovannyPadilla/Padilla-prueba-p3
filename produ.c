@@ -98,3 +98,28 @@ void resultadosp(struct Producto *producto)
     printf("Precio de compra: %.2f\n", producto->preciocomp);
 }
 
+int num;
+void archivo(struct Producto *productos)
+{
+    FILE *archivo;
+    archivo = fopen("productos.txt", "w");
+
+    if (archivo == NULL)
+    {
+        printf("Error al abrir el archivo.\n");
+        
+    }
+    
+    for (int i = 0; i < num; i++)
+    {
+        fprintf(archivo, "********************************\n");
+        fprintf(archivo, "Datos del producto %d:\n", i + 1);
+        fprintf(archivo, "Codigo del producto: %s\n", productos[i].codigo);
+        fprintf(archivo, "Nombre del producto: %s\n", productos[i].nombreP);
+        fprintf(archivo, "Descripcion del producto: %s\n", productos[i].descripcion);
+        fprintf(archivo, "Cantidad de producto: %d\n", productos[i].cantidad);
+        fprintf(archivo, "Precio de la compra: %.2f\n", productos[i].preciocomp);
+    }
+
+    fclose(archivo);
+}
